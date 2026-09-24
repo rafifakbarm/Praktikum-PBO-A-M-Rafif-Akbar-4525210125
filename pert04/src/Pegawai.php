@@ -14,12 +14,15 @@ abstract class Pegawai
         protected readonly float  $gajiPokok,
     ) {
         // TODO 1: tolak gaji pokok negatif.
+        if ($gajiPokok < 0){
+            throw new Error("Gaji pokok tidak boleh negatif");
+        }
     }
 
     /** TODO 2: kembalikan gaji pokok apa adanya. */
     public function hitungGaji(): float
     {
-        return 0;   // ganti
+        return $this->gajiPokok;   // ganti
     }
 
     abstract public function jenis(): string;
