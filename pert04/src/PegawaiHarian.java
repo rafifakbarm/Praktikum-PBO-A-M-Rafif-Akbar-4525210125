@@ -1,18 +1,22 @@
-public class PegawaiHarian extends Pegawai{
-    private final int hariKerja;
-    public PegawaiHarian(String nip, String nama, double gajiPokok, int hariKrja){
-        super(nip, nama, gajipokok);
-        this.hariKerja = hariKerja;
+public class PegawaiHarian extends Pegawai {
+
+    private final int jamKerja;
+    private final double upahPerJam;
+
+    public PegawaiHarian(String nip, String nama, double upahPerJam, int jamKerja) {
+        super(nip, nama, 0);
+        this.upahPerJam = upahPerJam;
+        this.jamKerja = jamKerja;
     }
 
     @Override
-    public double hitungGaji(){
-        return super.hitungGaji()  * hariKerja;
-
+    public double hitungGaji() {
+        return upahPerJam * jamKerja;
     }
 
     @Override
-    public String jenis (){
-        return "HARIAN"
-    }
+    public String jenis() { return "HARIAN"; }
+
+    protected int getJamKerja() { return jamKerja; }
+
 }

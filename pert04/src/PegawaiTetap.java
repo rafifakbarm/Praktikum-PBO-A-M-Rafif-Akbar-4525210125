@@ -10,6 +10,7 @@ public class PegawaiTetap extends Pegawai {
         // Baris berikut WAJIB dan harus menjadi pernyataan pertama.
         // TODO 1 (Langkah 3): hapus sementara baris ini, kompilasi,
         //         salin pesan kesalahannya ke catatan.md, lalu kembalikan.
+        
         super(nip, nama, gajiPokok);
 
         this.masaKerjaTahun = masaKerjaTahun;
@@ -23,7 +24,7 @@ public class PegawaiTetap extends Pegawai {
      */
     @Override
     public double hitungGaji() {
-        return 0;
+        return super.hitungGaji() * (1 + Math.min(masaKerjaTahun * TUNJANGAN_PER_TAHUN, TUNJANGAN_MAKSIMUM));
     }
 
     @Override

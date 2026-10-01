@@ -1,24 +1,15 @@
-public class Dosen extends PegawaiTetap{
-    private double tunjanganFungsional;
+public class Dosen extends PegawaiTetap {
 
-    public Dosen (String nip, String nama, double gajiPokok, int masaKerja, double tunjanganfungsional){
-        super (nip, nama, gajiPokok, masaKerja );
+    private final String bidangKeahlian;
 
-        this.tunjanganFungsional = tunjanganfungsional;
+    public Dosen(String nip, String nama, double gajiPokok, int masaKerjaTahun, String bidangKeahlian) {
+        super(nip, nama, gajiPokok, masaKerjaTahun);
+        this.bidangKeahlian = bidangKeahlian;
     }
 
     @Override
-    public double hitungGaji (){
-        return super.hitungGaji() + this.tunjanganFungsional;
-    }
+    public String jenis() { return "DOSEN"; }
 
-    @Override 
-    public String jenis(){
-        return "DOSEN";
-    }
+    public String getBidangKeahlian() { return bidangKeahlian; }
 
-    @Override
-    protected int getMasaKerjaTahun(){
-        return super.getMasaKerjaTahun();
-    }
 }
