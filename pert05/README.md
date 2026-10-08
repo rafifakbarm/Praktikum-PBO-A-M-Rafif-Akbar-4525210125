@@ -12,7 +12,7 @@
 
 ## Screenshot Coding Main.java
 
-<img ![alt text](<Screenshot 2026-10-01 153202.png>)
+![alt text](<Screenshot 2026-10-01 153202.png>)
 
 
 ## Screenshot Coding Trapesium.java
