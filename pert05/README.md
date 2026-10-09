@@ -1,65 +1,108 @@
-# LAPORAN PRAKTIKUM PBO A - PERTEMUAN 5
+# LAPORAN PRAKTIKUM PEMROGRAMAN BERBASIS OBJEK
 
-**Nama :** Muhammad Rafif Akbar
-**NPM :** 4525210125
-**Mata Kuliah :** Praktikum Pemrograman Berorientasi Objek
+| Informasi Praktikan | Keterangan |
+| :--- | :--- |
+| **Nama** | Muhammad Rafif Akbar |
+| **NPM** | 4525210125 |
+| **Kelas** | A |
+| **Mata Kuliah** | Pemrograman Berbasis Objek (PBO) |
+| **Pertemuan** | 05 - Polimorfisme |
+| **Tanggal** | Kamis 1 Oktober 2026 |
 
-## Materi
+---
 
-## `Pegawai Menggunakan Java & PHP`
+## 1. Implementasi Java
 
-`Materi : Polimorfisme`
+### 1.1. File: `Main.java`
 
-## Screenshot Coding Main.java
+**Penjelasan Kode:**
+> Menguji objek bangun datar melalui tipe induk sehingga method yang dipanggil menyesuaikan kelas objek sebenarnya.
 
-![alt text](<Screenshot 2026-10-01 153202.png>)
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image.png)
+- **After** ![alt text](image-1.png)
 
+### 1.2. File: `AntiPattern.java`
 
-## Screenshot Coding Trapesium.java
+**Penjelasan Kode:**
+> Contoh pola desain yang kurang untuk dibandingkan dengan pendekatan polimorfisme biasany membutuhkan pemeriksaan tipe untuk setiap bentuk.
 
-<img![alt text](<Screenshot 2026-10-01 153231.png>)
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-2.png)
+- **After** ![alt text](image-3.png)
 
-## Screenshot Coding Segitiga.java
+### 1.3. File: `BangunDatar.java`
 
-<img ![alt text](<Screenshot 2026-10-01 153222.png>)
+**Penjelasan Kode:**
+> Kelas abstraksi bangun datar yang mendefinisikan perilaku umum, seperti menghitung luas, untuk diimplementasikan kelas turunan.
 
+**Bukti Eksekusi (Screenshot):**
+- **Before** (kondisi awal/kesalahan, jika ada): `screenshots/before-BangunDatar.png`
+- **After** (kondisi akhir): `screenshots/after-BangunDatar.png`
 
-## Screenshot Coding Persegi.java
+### 1.4. File: `Lingkaran.java`
 
-<img ![alt text](<Screenshot 2026-10-01 153212.png>)
+**Penjelasan Kode:**
+> Kelas bangun datar berbentuk lingkaran yang menghitung luas berdasarkan jari jari.
 
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-4.png)
+- **After** ![alt text](image-5.png)
 
-## Screenshot Coding Lingkaran.java
+### 1.5. File: `Persegi.java`
 
-<img ![alt text](<Screenshot 2026-10-01 153150.png>)
+**Penjelasan Kode:**
+> Kelas bangun datar berbentuk persegi yang menghitung luas berdasarkan panjang sisi.
 
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-6.png)
+- **After** ![alt text](image-7.png)
 
-## Screenshot Coding BangunDatar.java
+### Output
 
-<img ![alt text](<Screenshot 2026-10-01 153141.png>)
+**Output Program:**
 
-## Screenshot Coding Antipattern.java
+![alt text](image-8.png)
 
-<img ![alt text](<Screenshot 2026-10-01 153130.png>)
+---
 
-## Screenshot Hasil Running Java
+## 2. Implementasi PHP
 
-<img ![alt text](<Screenshot 2026-10-01 153049-1.png>)
+### 2.1. File: `main.php`
 
-## Screenshot Coding Main.php
+**Penjelasan Kode:**
+> Program PHP yang menguji implementasi polimorfisme bangun datar dan menampilkan hasil pemanggilan perilaku objek.
 
-<img ![alt text](<Screenshot 2026-10-01 153254.png>)
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-9.png)
+- **After** ![alt text](image-10.png)
 
+### 2.2. File: `BangunDatar.php`
 
-## Screenshot Coding Notifikasi.php
+**Penjelasan Kode:**
+> Abstraksi bangun datar di PHP untuk menyamakan perilaku kelas bentuk yang berbeda.
 
-<img ![alt text](<Screenshot 2026-10-01 153306.png>)
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-11.png)
+- **After** ![alt text](image-12.png)
 
-## Screenshot Coding BangunDatar.php
+### 2.3. File: `notifikasi.php`
 
-<img ![alt text](<Screenshot 2026-10-01 153247.png>)
+**Penjelasan Kode:**
+> Contoh tambahan pemanfaatan perilaku polimorfik pada notifikasi, sehingga pemanggil menggunakan perilaku umum tanpa bergantung pada detail implementasi.
 
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-13.png)
+- **After** ![alt text](image-14.png)
 
-## Screenshot Hasil Running PHP
+### Output
 
-<img ![alt text](<Screenshot 2026-10-01 153037.png>)
+**Output Program:**
+
+![alt text](image-15.png)
+
+---
+
+## 3. Kesimpulan
+
+Polimorfisme memungkinkan objek dari kelas berbeda diperlakukan melalui tipe atau kontrak yang sama, tetapi menjalankan implementasi method masing-masing. Pendekatan ini mengurangi percabangan berdasarkan tipe dan memudahkan penambahan kelas baru.

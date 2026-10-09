@@ -1,60 +1,88 @@
-# LAPORAN PRAKTIKUM PBO A - PERTEMUAN 4
+# LAPORAN PRAKTIKUM PEMROGRAMAN BERBASIS OBJEK
 
-**Nama :** Muhammad Rafif Akbar
-**NPM :** 4525210125
-**Mata Kuliah :** Praktikum Pemrograman Berorientasi Objek
+| Informasi Praktikan | Keterangan |
+| :--- | :--- |
+| **Nama** | Muhammad Rafif Akbar |
+| **NPM** | 4525210125 |
+| **Kelas** | A |
+| **Mata Kuliah** | Pemrograman Berbasis Objek (PBO) |
+| **Pertemuan** | 04 - Inheritance (Pewarisan) |
+| **Tanggal** | Kamis 24 September 2026 |
 
-## Materi
+---
 
-## `Pegawai Menggunakan Java & PHP`
+## 1. Implementasi Java
 
-`Materi : Inheritance (Pewarisan)`
+### 1.1. File: `Main.java`
 
-## Screenshot Coding Main.java
+**Penjelasan Kode:**
+> Membuat objek pegawai dan memperlihatkan penggunaan kelas induk serta kelas turunan untuk membedakan perhitungan atau informasi pegawai.
 
-<img width="830" height="423" alt="Screenshot 2026-09-24 183518" src="https://github.com/user-attachments/assets/e487267f-33dd-423c-9f8f-210386f8fca6" />
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image.png)
+- **After** ![alt text](image-1.png)
 
+### 1.2. File: `Pegawai.java`
 
-## Screenshot Coding Pegawai.java
+**Penjelasan Kode:**
+> Kelas yang menyimpan data umum pegawai dan perilaku dasar yang dapat digunakan oleh kelas turunan.
 
-<img width="605" height="424" alt="Screenshot 2026-09-24 183623" src="https://github.com/user-attachments/assets/ac5815e8-0dc9-4078-b4d2-275ac8b3590a" />
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-2.png)
+- **After** ![alt text](image-3.png)
 
+### 1.3. File: `PegawaiKontrak.java`
 
-## Screenshot Coding PegawaiKontrak.java
+**Penjelasan Kode:**
+> Kelas turunan yang merepresentasikan pegawai kontrak dan menambahkan perilaku khusus sesuai status kontrak.
 
-<img width="555" height="340" alt="Screenshot 2026-09-24 183721" src="https://github.com/user-attachments/assets/2a125e10-9de9-4aee-a038-4a335c5dfd50" />
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-4.png)
+- **After** ![alt text](image-5.png)
 
+### 1.4. File: `PegawaiTetap.java`
 
-## Screenshot Coding PegawaiHarian.java
+**Penjelasan Kode:**
+> Kelas turunan yang merepresentasikan pegawai tetap dan menerapkan perilaku khusus pegawai tetap.
 
-<img width="551" height="337" alt="Screenshot 2026-09-24 183659" src="https://github.com/user-attachments/assets/511c9600-a90a-402f-a713-0f93e9da2932" />
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-6.png)
+- **After** ![alt text](image-7.png)
 
+### Output
 
-## Screenshot Coding PegawaiTetap.java
+**Output Program:**
 
-<img width="694" height="424" alt="Screenshot 2026-09-24 183740" src="https://github.com/user-attachments/assets/772940be-ba7f-4462-8cf8-af89d243d069" />
+![alt text](image-8.png)
 
+---
 
-## Screenshot Coding Dosen.java
+## 2. Implementasi PHP
 
-<img width="675" height="243" alt="Screenshot 2026-09-24 183455" src="https://github.com/user-attachments/assets/b38892d0-83ed-4bb9-883d-b9bdc1b6ee16" />
+### 2.1. File: `main.php`
 
+**Penjelasan Kode:**
+> Program PHP untuk membuat dan menggunakan objek pegawai melalui kelas dasar dan turunannya.
 
-## Screenshot Hasil Running Java
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-9.png)
+- **After** ![alt text](image-10.png)
 
-<img width="395" height="357" alt="Screenshot 2026-09-24 183354" src="https://github.com/user-attachments/assets/4e6efc7d-f83b-4aa5-9672-7fa906a4d783" />
+### 2.2. File: `Pegawai.php`
 
+**Penjelasan Kode:**
+> Kelas dasar pegawai dalam PHP yang menyediakan data dan perilaku umum untuk kelas turunan.
 
-## Screenshot Coding Main.php
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-11.png)
+- **After** ![alt text](image-12.png)
 
-<img width="674" height="423" alt="Screenshot 2026-09-24 183543" src="https://github.com/user-attachments/assets/b7672797-8186-4193-8bba-a1e159bb4a61" />
+### Output
 
+![alt text](image-13.png)
 
-## Screenshot Coding Pegawai.php
+---
 
-<img width="538" height="419" alt="Screenshot 2026-09-24 183641" src="https://github.com/user-attachments/assets/a9687062-e31b-443d-a23d-1210aecb3f90" />
+## 3. Kesimpulan
 
-
-## Screenshot Hasil Running PHP
-
-<img width="451" height="269" alt="Screenshot 2026-09-24 183043" src="https://github.com/user-attachments/assets/ead66783-e8ce-4031-ab4e-0ecb3eba7014" />
+Inheritance memungkinkan kelas turunan menggunakan dan mengembangkan atribut maupun method kelas induk. Dengan pemodelan pegawai tetap dan kontrak, bagian yang sama bisa ditempatkan pada kelas induk, dan perilaku khusus diletakkan di kelas turunan.

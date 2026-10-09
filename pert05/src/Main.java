@@ -28,7 +28,7 @@ public class Main {
 
         System.out.println();
         System.out.println("Periksa: Lingkaran(7) luas = 153,94 ; Persegi(5) luas = 25,00");
-        System.out.println("Segitiga(3,4,5) luas = 6,00");
+        System.out.println("         Segitiga(3,4,5) luas = 6,00");
 
         System.out.println();
         System.out.println("=== Downcasting hanya bila benar-benar perlu ===");

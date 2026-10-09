@@ -12,11 +12,7 @@ public class Persegi extends BangunDatar {
     }
 
     // TODO 2: lengkapi luas() dan keliling().
-    @Override 
-    public double luas()     { 
+    @Override public double luas()     { 
         return sisi * sisi; }
-        
-    @Override 
-    public double keliling() { 
-        return 4 * sisi; }
+    @Override public double keliling() { return 4 * sisi; }
 }

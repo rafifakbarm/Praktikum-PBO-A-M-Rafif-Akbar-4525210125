@@ -1,59 +1,116 @@
-# LAPORAN PRAKTIKUM PBO A - PERTEMUAN 6
+# LAPORAN PRAKTIKUM PEMROGRAMAN BERBASIS OBJEK
 
-- **Nama :** Muhammad Rafif Akbar
-- **NPM :** 4525210125
-- **Mata Kuliah :** Praktikum Pemrograman Berorientasi Objek
+| Informasi Praktikan | Keterangan |
+| :--- | :--- |
+| **Nama** | Muhammad Rafif Akbar |
+| **NPM** | 4525210125 |
+| **Kelas** | A |
+| **Mata Kuliah** | Pemrograman Berbasis Objek (PBO) |
+| **Pertemuan** | 06 - Abstract Class, Interface, dan Enum |
+| **Tanggal** | Kamis 8 Oktober 2026 |
 
-## Materi
+---
 
-## `Kendaraan Menggunakan Java & PHP`
+## 1. Implementasi Java
 
-`Materi : Abstract, Interface, dan ENUM`
+### 1.1. File: `Main.java`
 
-## Screenshot Coding Main.java
+**Penjelasan Kode:**
+> Program uji yang menggunakan daftar objek Movable, mengisi bahan bakar melalui kontrak Fuelable, dan menampilkan perilaku enum TipeBahanBakar. Pemanggilan isiPenuh menjadi contoh kesalahan tipe karena Sepeda tidak mengimplementasikan Fuelable.
 
-![alt text](<Screenshot 2026-10-08 155656.png>)
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image.png)
+- **After** ![alt text](image-1.png)
 
-## Screenshot Coding Fuelable.java
+### 1.2. File: `Kendaraan.java`
 
-![alt text](<Screenshot 2026-10-08 155622.png>)
+**Penjelasan Kode:**
+> Kelas abstrak yang menyimpan data umum kendaraan, menyediakan perilaku bersama, dan mewajibkan kelas turunan mendefinisikan jumlah roda.
 
-## Screenshot Coding Kendaraan.java
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-2.png)
+- **After** ![alt text](image-3.png)
 
-![alt text](<Screenshot 2026-10-08 155634.png>)
+### 1.3. File: `Mobil.java`
 
+**Penjelasan Kode:**
+> Kelas turunan Kendaraan yang mengimplementasikan Movable dan Fuelable, menyediakan informasi kapasitas tangki serta tipe bahan bakar.
 
-## Screenshot Coding Mobil.java
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-4.png)
+- **After** ![alt text](image-5.png)
 
-![alt text](<Screenshot 2026-10-08 155708.png>)
+### 1.4. File: `Sepeda.java`
 
+**Penjelasan Kode:**
+> Kelas turunan Kendaraan yang mengimplementasikan Movable. Sepeda dapat bergerak, tetapi tidak memenuhi kontrak Fuelable.
 
-## Screenshot Coding Movable.java
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-6.png)
+- **After** ![alt text](image-7.png)
 
-![alt text](<Screenshot 2026-10-08 155718.png>)
+### 1.5. File: `Movable.java`
 
+**Penjelasan Kode:**
+> Interface yang mendefinisikan kontrak bergerak dan kecepatan maksimum, termasuk default method untuk ringkasan gerak.
 
-## Screenshot Coding Sepeda.java
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-8.png)
+- **After** ![alt text](image-9.png)
 
-![alt text](<Screenshot 2026-10-08 155725.png>)
+### 1.6. File: `Fuelable.java`
 
-## Screenshot Coding TipeBahanBakar.java
+**Penjelasan Kode:**
+> Interface yang mendefinisikan kontrak pengisian bahan bakar, kapasitas tangki, dan tipe bahan bakar.
 
-![alt text](<Screenshot 2026-10-08 155742.png>)
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-10.png)
+- **After** ![alt text](image-11.png)
 
-## Screenshot Hasil Running Java
+### 1.7. File: `TipeBahanBakar.java`
 
-![alt text](<Screenshot 2026-10-08 153303.png>)
+**Penjelasan Kode:**
+> Enum berisi pilihan bahan bakar yang valid beserta label, harga per satuan, perhitungan biaya pengisian, dan informasi ramah lingkungan.
 
-## Screenshot Coding Main.php
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-12.png)
+- **After** ![alt text](image-13.png)
 
-![alt text](<Screenshot 2026-10-08 160854-1.png>)
+### Output
 
+**Output Program:**
 
-## Screenshot Coding Abstraksi.php
+![alt text](image-14.png)
 
-![alt text](<Screenshot 2026-10-08 160846.png>)
+---
 
-## Screenshot Hasil Running PHP
+## 2. Implementasi PHP
 
-!![alt text](<Screenshot 2026-10-08 160504.png>)
+### 2.1. File: `main.php`
+
+**Penjelasan Kode:**
+> Program PHP yang menjalankan objek kendaraan, mengisi bahan bakar melalui tipe Fuelable, menguji enum, dan memperlihatkan penggunaan trait.
+
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-15.png)
+- **After** ![alt text](image-16.png)
+
+### 2.2. File: `abstraksi.php`
+
+**Penjelasan Kode:**
+> Berisi interface Movable dan Fuelable, enum TipeBahanBakar, serta trait Loggable untuk berbagi perilaku log. File ini juga menjadi tempat definisi abstraksi dan kelas pendukung PHP.
+
+**Bukti Eksekusi (Screenshot):**
+- **Before** ![alt text](image-17.png)
+- **After** ![alt text](image-18.png)
+### Output
+
+**Output Program:**
+
+![alt text](image-19.png)
+
+---
+
+## 3. Kesimpulan
+
+Abstract class digunakan untuk berbagi keadaan dan perilaku dasar sekaligus memaksa kelas turunan melengkapi method abstrak. Interface mendefinisikan kemampuan yang harus dimiliki kelas, sedangkan enum membatasi pilihan nilai yang sah. Pemisahan kontrak membuat fungsi seperti isiPenuh hanya menerima objek yang benar-benar mendukung pengisian bahan bakar.
