@@ -10,7 +10,7 @@
  * Tuliskan lebih dulu daftar invariant-nya di analisis.md,
  * baru lengkapi TODO di bawah ini.
  */
-public class Mahasiswa {
+public class Mahasiswa { 
 
     // Konstanta bobot — jangan menulis angka 0.30 dan 0.40 di dalam method.
     public static final double BOBOT_TUGAS = 0.30;
