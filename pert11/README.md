@@ -1,185 +1,219 @@
-# Praktikum Sesi 11 — Collections, Generics, dan Unit Test Pertama
+# LAPORAN PRAKTIKUM PEMROGRAMAN BERBASIS OBJEK
 
-**Sub-CPMK-P7 — Mahasiswa mampu menerapkan exception handling dan menulis unit test dasar dengan JUnit 5 dan PHPUnit. (P3)**
-
-**Keterkaitan teori:** Pertemuan 11 — Collections, Generics, dan Operasi Fungsional  
-**Durasi:** 170 menit (1 SKS praktikum) · **Bobot:** 5% dari nilai praktikum  
-**Bahasa:** Java 25 dan PHP 8.4+
-
-```txt
-Versi cetak modul ini: [`Modul-Praktikum-11-collections-generics-dan-unit-test-pertama.docx`](Modul-Praktikum-11-collections-generics-dan-unit-test-pertama.docx). Kerangka kode: [`starter/`](starter/).
-```
-
----
-
-## A. Tujuan sesi
-
-1. Mengganti struktur data manual dengan Collections Framework dan generics.
-2. Membuat kelas generik sendiri dan membaca tanda tangan bertipe parameter.
-3. Menulis unit test pertama dengan JUnit 5 dan PHPUnit.
-4. Menjadikan daftar skenario kegagalan sesi 10 sebagai kasus uji yang benar-benar dijalankan.
-
-## B. Alat dan bahan
-
-- Proyek hasil sesi 9 dan 10.
-- JUnit 5 (lewat Maven) dan PHPUnit (lewat Composer).
-
-## C. Berkas starter
-
-Salin ke folder tugas Anda; **jangan** menyunting berkas aslinya. Setiap komentar `TODO` harus Anda lengkapi sendiri — kode yang disalin dari sumber lain akan terlihat pada sesi demo.
-
-| Berkas                             | Keterangan                                                                          |
-| ---------------------------------- | ----------------------------------------------------------------------------------- |
-| `starter/java/Repository.java`     | Kerangka kelas generik Repository<T> dengan TODO.                                   |
-| `starter/java/RepositoryTest.java` | Kerangka uji JUnit 5 dengan TODO pada assertion.                                    |
-| `starter/php/KoleksiBuku.php`      | Kerangka typed collection dengan TODO.                                              |
-| `starter/php/KoleksiBukuTest.php`  | Kerangka uji PHPUnit dengan TODO.                                                   |
-| `starter/pom-tambahan.xml`         | Potongan dependensi JUnit 5 dan plugin surefire yang harus disalin ke pom.xml Anda. |
-
-## D. Langkah kerja
-
-Kerjakan berurutan. Jangan melanjutkan ke langkah berikutnya sebelum checkpoint terpenuhi.
-
-### Langkah 1 — Mengganti struktur data manual dengan Collections
-
-- Buka LibraryService hasil sesi 10. Kemungkinan besar Anda masih memakai array biasa atau beberapa array paralel.
-- Ganti dengan struktur yang tepat: List untuk daftar berurutan, Map untuk pencarian berdasarkan kunci, Set bila tidak boleh ada duplikat.
-- Tuliskan di sesi-11/pilihan-koleksi.md: untuk setiap penggantian, mengapa Anda memilih struktur itu dan bukan yang lain.
-
-> **Checkpoint —** Tidak ada lagi array paralel. Pencarian buku berdasarkan ISBN tidak lagi memakai perulangan linear.
-
-### Langkah 2 — Membuat kelas generik Repository<T>
-
-- Lengkapi TODO pada Repository.java: simpan(T), cariById(String) yang mengembalikan Optional<T>, cariSemua() yang mengembalikan List<T>, dan hapus(String).
-- Perhatikan tanda tangannya. Setelah sesi ini, JpaRepository<Buku, Long> pada sesi 14 tidak akan terasa asing.
-- Getter cariSemua() harus mengembalikan salinan tak-berubah — pelajaran dari sesi 7 tetap berlaku.
-
-> **Checkpoint —** Repository<Buku> menolak penyimpanan objek selain Buku pada tahap KOMPILASI.
-
-### Langkah 3 — Optional dan padanannya di PHP
-
-- Ganti seluruh method pencarian yang mengembalikan null menjadi Optional<T> di Java.
-- Di PHP, gunakan tipe nullable (?Buku) dengan operator null-safe (?->) dan null-coalescing (??).
-- Cari di kode Anda: adakah baris yang masih berpotensi menimbulkan NullPointerException? Catat di pilihan-koleksi.md.
-
-> **Checkpoint —** Tidak ada method pencarian yang mengembalikan null secara langsung.
-
-### Langkah 4 — Operasi fungsional atas koleksi
-
-- Tulis tiga laporan menggunakan operasi fungsional, tanpa perulangan manual:
-  1. Daftar buku yang tersedia (filter).
-  2. Daftar judul saja, digabung dengan pemisah (map + join).
-  3. Jumlah buku per penulis (groupingBy di Java; pengelompokan manual atau Collection di PHP).
-- PERHATIAN PHP: array_map(callable, array) tetapi array_filter(array, callable) — urutan argumennya berbeda. Ini sumber kesalahan yang sangat sering.
-
-> **Checkpoint —** Ketiga laporan berjalan dan hasilnya sama antara versi Java dan PHP.
-
-### Langkah 5 — Unit test pertama dengan JUnit 5
-
-- Salin potongan dependensi dari pom-tambahan.xml ke pom.xml Anda.
-- Buat src/test/java/ dengan struktur package yang sama seperti src/main/java.
-- Lengkapi RepositoryTest.java. Minimal lima kasus uji: menyimpan lalu menemukan, mencari yang tidak ada, menghapus, koleksi kosong, dan penyimpanan dengan kunci yang sama (menimpa atau menolak — sesuai rancangan Anda).
-- Tambahkan pula uji untuk exception: pastikan pinjam() melempar BukuTidakDitemukanException untuk ISBN yang tidak terdaftar.
-
-**Terminal**
-
-```bash
-mvn test
-```
-
-> **Checkpoint —** mvn test menampilkan Tests run: minimal 8, Failures: 0, Errors: 0.
-
-### Langkah 6 — Unit test dengan PHPUnit
-
-- Tambahkan PHPUnit sebagai dependensi pengembangan, dan tambahkan pemetaan autoload-dev untuk namespace pengujian.
-- Lengkapi KoleksiBukuTest.php dengan kasus uji yang setara.
-- Terjemahkan minimal LIMA skenario dari skenario-uji.md sesi 10 menjadi kasus uji yang benar-benar dijalankan.
-
-**Terminal**
-
-```bash
-composer require --dev phpunit/phpunit
-./vendor/bin/phpunit tests
-```
-
-> **Checkpoint —** PHPUnit menampilkan OK dengan minimal 8 pengujian dan nol kegagalan.
-
-### Langkah 7 — Membuat satu uji gagal dengan sengaja
-
-- Ubah satu baris kode sumber sehingga salah satu uji gagal. Jalankan pengujian.
-- Salin pesan kegagalannya ke sesi-11/pilihan-koleksi.md dan jelaskan bagaimana pesan itu membantu menemukan letak masalah.
-- Kembalikan kodenya, pastikan seluruh uji hijau kembali.
-
-> **Checkpoint —** pilihan-koleksi.md memuat satu pesan kegagalan uji beserta penjelasannya.
-
-## E. Latihan mandiri di lab
-
-_Dikerjakan bila langkah kerja selesai lebih awal. Tidak wajib, tetapi menambah nilai pada aspek penerapan konsep._
-
-1. Ganti HashMap menjadi TreeMap pada salah satu struktur Anda. Jalankan laporan. Jelaskan perubahan urutan keluarannya.
-2. Tulis method generik dengan bounded type: <N extends Number> double jumlahkan(List<N> angka). Coba panggil dengan List<String> dan catat pesan kompilatornya.
-3. Di PHP, jalankan array_filter tanpa array_values lalu json_encode hasilnya. Amati bahwa keluarannya menjadi objek, bukan larik. Jelaskan mengapa.
-
-## F. Tugas rumah
-
-1. Perluas cakupan pengujian sampai seluruh 10 skenario dari sesi 10 terwakili.
-2. Tulis sesi-11/catatan-uji.md: menurut Anda, kasus uji apa yang PALING sulit ditulis, dan mengapa?
-
-## G. Luaran yang dikumpulkan
-
-Seluruh luaran diserahkan melalui repositori Git pribadi Anda, dengan riwayat commit yang menunjukkan proses pengerjaan — bukan satu commit tunggal di akhir.
-
-| Berkas / folder                | Keterangan                                                                            |
-| ------------------------------ | ------------------------------------------------------------------------------------- |
-| `src/main/.../Repository.java` | Kelas generik dengan Optional.                                                        |
-| `src/test/java/`               | Kelas uji JUnit 5 yang seluruhnya lulus.                                              |
-| `tests/`                       | Kelas uji PHPUnit yang seluruhnya lulus.                                              |
-| `sesi-11/pilihan-koleksi.md`   | Alasan pemilihan struktur koleksi, catatan null-safety, dan satu pesan kegagalan uji. |
-| `sesi-11/catatan-uji.md`       | Refleksi tentang kasus uji tersulit.                                                  |
-
-## H. Rubrik penilaian sesi ini
-
-| Aspek                     | Bobot | Kriteria                                                                                                                 |
-| ------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------ |
-| Kebenaran fungsional      | 35%   | Seluruh perintah pada langkah kerja berjalan dan menghasilkan keluaran yang diminta.                                     |
-| Penerapan konsep sesi ini | 30%   | Konsep yang menjadi Sub-CPMK sesi ini diterapkan dengan tepat, bukan sekadar membuat program berjalan.                   |
-| Keterbacaan dan konvensi  | 10%   | Penamaan bermakna, format konsisten, komentar seperlunya, riwayat commit wajar.                                          |
-| Demo dan pertanyaan lisan | 25%   | Mampu menjelaskan setiap baris kode sendiri dan menjawab pertanyaan demo. MENGGUGURKAN: tanpa demo, tugas tidak dinilai. |
-
-## I. Pertanyaan demo
-
-> Pertanyaan berikut akan diajukan saat Anda mendemokan pekerjaan sesi ini. Daftar ini sengaja dibuka agar Anda mempersiapkan **pemahaman**, bukan hafalan. Anda boleh memakai alat bantu apa pun saat mengerjakan — tetapi kode yang tidak dapat Anda jelaskan sendiri tidak dinilai.
-
-1. Mengapa Anda memilih Map dan bukan List untuk menyimpan buku? Apa yang berubah dari sisi kecepatan pencarian?
-2. Bacakan tanda tangan Repository<T> Anda. Apa arti T di situ? Apa yang terjadi kalau saya mencoba menyimpan objek Anggota ke Repository<Buku>?
-3. Mengapa cariById mengembalikan Optional dan bukan null? Tunjukkan satu tempat di kode Anda yang menjadi lebih aman karenanya.
-4. Jalankan mvn test sekarang. Berapa uji yang berjalan? Tunjuk satu uji dan jelaskan apa yang sedang dibuktikannya.
-5. Saya ubah satu baris di LibraryService sekarang — uji mana yang akan gagal? Mari kita buktikan.
-6. Tunjukkan satu skenario dari daftar sesi 10 yang sudah Anda ubah menjadi unit test. Bagaimana bentuknya berubah?
-7. Pada kode PHP Anda, apa beda array_map dan array_filter dari sisi urutan argumen? Mengapa itu sering menimbulkan kesalahan?
-
-## J. Kesalahan yang sering terjadi
-
-| Gejala                                      | Penyebab yang lazim                                                           | Cara memperbaiki                                                                                        |
-| ------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| mvn test tidak menemukan satu pun uji       | Berkas uji tidak berada di src/test/java, atau namanya tidak berakhiran Test. | Ikuti konvensi Maven: src/test/java dan nama kelas berakhiran Test.                                     |
-| PHPUnit: No tests executed                  | Namespace pengujian belum terdaftar di autoload-dev, atau folder tests salah. | Tambahkan autoload-dev pada composer.json lalu jalankan composer dump-autoload.                         |
-| ConcurrentModificationException             | Koleksi diubah saat sedang di-iterasi.                                        | Gunakan Iterator.remove(), removeIf(), atau kumpulkan dulu ke koleksi baru.                             |
-| json_encode menghasilkan objek, bukan larik | array_filter meninggalkan indeks berlubang.                                   | Bungkus dengan array_values() setelah array_filter.                                                     |
-| Uji lulus padahal kode salah                | Assertion terlalu longgar, mis. hanya memeriksa bahwa hasilnya tidak null.    | Periksa nilai yang sesungguhnya diharapkan. Uji yang tidak pernah bisa gagal tidak membuktikan apa pun. |
-
-## Lembar verifikasi demo
-
-Diisi oleh dosen atau asisten pada saat demo. Tugas tanpa lembar terverifikasi tidak dinilai.
-
-|                 |     |
-| --------------- | --- |
-| Nama / NIM      |     |
-| Tanggal demo    |     |
-| Nilai sesi ini  |     |
-| Catatan penguji |     |
-| Paraf penguji   |     |
+| Informasi Praktikan | Keterangan |
+| :--- | :--- |
+| **Nama** | Muhammad Rafif Akbar |
+| **NPM** | 4525210125 |
+| **Kelas** | A |
+| **Mata Kuliah** | Pemrograman Berbasis Objek (PBO) |
+| **Pertemuan** | 11 - Collection, Generics, dan Operasi Fungsional |
+| **Tanggal** | Kamis 12 November 2026 |
 
 ---
 
-_Modul ini disusun 10 September 2026. Versi teknologi yang dirujuk (Java 25 LTS, PHP 8.4/8.5, Laravel 13, Spring Boot 4.1) diverifikasi pada tanggal tersebut dan perlu diperiksa ulang sebelum semester berjalan._
+## 1. Implementasi Java
+
+### 1.1. File: `Main.java`
+
+**Penjelasan Kode:**
+> Titik masuk program Java. Saat dijalankan, method demoCollections() dipanggil lebih dulu: membuat Repository<Buku> berisi dua buku, lalu mencetak tiga laporan fungsional, yaitu buku yang tersedia (filter), judul digabung dengan pemisah (map + String.join), dan jumlah buku per penulis (kelompokkan). Setelah itu menu interaktif (1. Tambah Buku, 2. Tambah Anggota, 3. Pinjam Buku, 0. Keluar) berjalan dalam perulangan while dengan switch, dan tiap aksi diteruskan ke PerpustakaanService. Pilihan di luar 0-3 ditolak dengan peringatan. Setelah pengguna keluar, eksporLaporan() menulis daftar ISBN, judul, stok, dan status Tersedia/Tidak Tersedia ke laporan_buku.txt memakai try-with-resources agar file otomatis tertutup.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image.png)
+
+### 1.2. File: `Repository.java`
+
+**Penjelasan Kode:**
+> Kelas generik Repository<T> yang menyimpan data di LinkedHashMap<String, T> sehingga pencarian berdasarkan kunci tidak lagi linear dan urutan simpan tetap terjaga. Kunci diambil lewat Function<T, String> yang dikirim saat constructor (misalnya Buku::getNomorInduk). simpan(T) menolak item null dan kunci kosong, serta menimpa item lama bila kunci sama. cariById() mengembalikan Optional<T> (bukan null), cariSemua() mengembalikan List.copyOf sehingga tidak bisa diubah dari luar, hapus() mengembalikan boolean, dan jumlah() mengembalikan banyak item. Tiga method fungsional juga disediakan: filter(Predicate), map(Function) dengan tipe hasil generik R, dan kelompokkan(Function) yang memakai Collectors.groupingBy + counting. Karena bertipe T, Repository<Buku> menolak objek selain Buku pada tahap kompilasi.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-16.png)
+
+### 1.3. File: `RepositoryTest.java`
+
+**Penjelasan Kode:**
+> Kelas uji JUnit 5 untuk Repository, memakai record Buku sederhana dan @BeforeEach agar setiap uji mulai dari Repository kosong. Ada delapan kasus uji: item yang disimpan dapat ditemukan kembali, mencari id yang tidak ada menghasilkan Optional kosong, item yang dihapus tidak ditemukan lagi, repository baru berisi nol item, koleksi dari cariSemua() tidak bisa diubah (assertThrows UnsupportedOperationException), kunci yang sama menimpa item lama, simpan(null) atau kunci kosong ditolak (IllegalArgumentException), dan pinjam() dengan ISBN tidak terdaftar melempar BukuTidakDitemukanException. Uji terakhir mengubah skenario kegagalan sesi 10 menjadi unit test yang benar-benar dijalankan lewat mvn test.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-2.png)
+
+### 1.4. File: `AnggotaTidakDitemukanException.java`
+
+**Penjelasan Kode:**
+> Exception domain yang dilempar saat ID anggota belum terdaftar. Turunan PerpustakaanException dan membawa data idAnggota atribut private final beserta getter getIdAnggota(), sehingga pemanggil bisa mengambil ID penyebab error.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-3.png)
+
+### 1.5. File: `BatasPinjamTerlampauiException.java`
+
+**Penjelasan Kode:**
+> Exception yang dilempar saat anggota sudah mencapai batas maksimum peminjaman. Membawa dua data, yaitu idAnggota dan batas, lengkap dengan getter-nya, sehingga pemanggil dapat menampilkan batas tanpa harus mengetahui aturannya sendiri.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-4.png)
+
+### 1.6. File: `BukuSedangDipinjamException.java`
+
+**Penjelasan Kode:**
+> Exception yang dilempar saat stok buku habis (semua eksemplar sedang dipinjam). Membawa isbn untuk diolah sistem dan judul agar pesan ke pengguna lebih bermakna, masing-masing dengan getter.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-5.png)
+
+### 1.7. File: `BukuTidakDitemukanException.java`
+
+**Penjelasan Kode:**
+> Exception yang dilempar saat ISBN tidak ada di katalog. Membawa data isbn (bukan sekadar teks pesan) dan menyediakan getIsbn(), sehingga pemanggil bisa mengambil kembali penyebab error secara terstruktur. Exception inilah yang diuji pada RepositoryTest.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-6.png)
+
+### 1.8. File: `PerpustakaanException.java`
+
+**Penjelasan Kode:**
+> Kelas induk abstract untuk seluruh exception domain perpustakaan, diturunkan dari RuntimeException (unchecked) karena kegagalannya menandakan permintaan yang tidak sah, bukan kondisi luar yang wajar. Dengan induk bersama, semua kegagalan domain bisa ditangkap sekaligus lewat satu blok catch tanpa ikut menelan kesalahan pemrograman lain. Menyediakan dua constructor protected (pesan saja, dan pesan beserta penyebab).
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-7.png)
+
+### 1.9. File: `LibraryService.java`
+
+**Penjelasan Kode:**
+> Data disimpan dalam tiga HashMap: stok, judul, dan pinjaman, dengan konstanta BATAS_PINJAM = 3. Pencarian berdasarkan ISBN atau ID anggota cukup lewat kunci Map, tanpa perulangan linear dan tanpa array paralel. Method pinjam() memakai guard clause: tiap syarat (anggota ada, buku ada, stok tersedia, batas pinjam belum tercapai) diperiksa berurutan dan langsung throw exception yang sesuai. Alur utama (kurangi stok, tambah pinjaman) berada di akhir tanpa percabangan bersarang. Method pendukung: tambahBuku, daftarkanAnggota, sisaEksemplar, judulDari, dan getSemuaJudul. Class inilah yang diuji pada kasus pinjam ISBN tidak terdaftar di RepositoryTest.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-8.png)
+
+### 1.10. File: `LibraryServiceKotor.java`
+
+**Penjelasan Kode:**
+> Method pinjam() memakai if bersarang empat tingkat dan hanya mengembalikan true/false, sehingga pemanggil tidak tahu penyebab peminjaman gagal. Berkas ini dipertahankan sebagai pembanding dengan LibraryService.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-9.png)
+
+### 1.11. File: `PerpustakaanService.java`
+
+**Penjelasan Kode:**
+> Kelas penghubung antara input pengguna dan LibraryService, berisi tiga method statis. tambahAnggota memvalidasi ID tidak boleh kosong. tambahBuku memvalidasi ISBN, judul, dan jumlah eksemplar (harus angka dan lebih dari 0, NumberFormatException ditangkap). pinjamBuku berjalan dalam perulangan sampai pengguna mengetik exit; exception domain ditangkap lewat PerpustakaanException, lalu instanceof dipakai untuk menampilkan detail spesifik (ISBN, ID anggota, judul, atau batas). Exception umum ditangkap sebagai error sistem.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-10.png)
+
+### 1.12. File: `Buku.java`
+
+**Penjelasan Kode:**
+> Model buku yang dipakai sebagai tipe Repository<Buku> pada demo di Main. Menyimpan nomorInduk, judul, penulis, dan jumlahEksemplar; constructor menolak jumlah eksemplar negatif. Bab adalah kelas bersarang dengan constructor private sehingga hanya Buku yang bisa membuatnya lewat tambahBab(nomor, judul), dan getBab() mengembalikan List.copyOf agar relasinya benar-benar komposisi. kurangiStok() melempar IllegalStateException bila stok sudah nol, sedangkan tersedia() dipakai sebagai predikat filter pada laporan "buku tersedia".
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-11.png)
+
+### 1.13. File: `Jurusan.java`
+
+**Penjelasan Kode:**
+> Contoh agregasi sebagai pembanding komposisi pada Buku. Objek Mahasiswa (kelas bersarang dengan constructor publik) dibuat di luar lalu diterima lewat daftarkan(), sehingga tetap hidup meski jurusan dibubarkan. daftarkan() menolak null dan mahasiswa yang sudah terdaftar, keluarkan() menolak mahasiswa yang belum terdaftar, dan getMahasiswa() mengembalikan salinan tak-berubah (List.copyOf).
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-12.png)
+
+### 1.14. File: `Anggota.java`
+
+**Penjelasan Kode:**
+> Turunan Jurusan yang menambah data kodeAnggota, anggotaSejak, dan anggotaPerpus (Mahasiswa). daftarkan() menyimpan mahasiswa beserta tanggal mulai keanggotaan dan menolak mahasiswa kosong. checkMasaKeanggotaan() membandingkan tanggal sekarang dengan anggotaSejak ditambah tiga tahun untuk menentukan status valid atau tidak. getKeanggotaan() mencetak nama, jurusan, kode anggota, dan tanggal bergabung yang diformat dd-MM-yyyy lewat method private formatDateMasaAnggota().
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-13.png)
+
+### 1.15. File: `Format.java`
+
+**Penjelasan Kode:**
+> Kelas utilitas dengan constructor private sehingga tidak bisa dibuat objeknya. Method static rupiah(long) memformat angka ke mata uang Rupiah memakai NumberFormat dengan locale id-ID tanpa angka desimal.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-14.png)
+
+### Output
+
+**Output Program:**
+
+![alt text](image-15.png)
+---
+
+## 2. Implementasi PHP
+
+### 2.1. File: `main.php`
+
+**Penjelasan Kode:**
+> Program utama PHP yang berfungsi sebagai demo. Memuat autoloader Composer, membuat objek LibraryService, mendaftarkan dua buku dan dua anggota, lalu menjalankan tujuh skenario peminjaman dalam foreach. Setiap skenario dibungkus try-catch untuk menangkap PerpustakaanException dan mencetak BERHASIL atau GAGAL beserta alasannya. Selanjutnya "LAPORAN FUNGSIONAL KOLEKSI" membuat KoleksiBuku berisi dua buku lalu mencetak tiga laporan: buku tersedia (filter), judul digabung dengan implode (map), dan jumlah buku per penulis (kelompokkan). Fungsi createReport() menulis laporan buku ke laporan_buku.txt memakai fopen/fwrite, dengan try-catch-finally agar file selalu ditutup lewat fclose meski terjadi error.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-17.png)
+
+### 2.2. File: `KoleksiBuku.php`
+
+**Penjelasan Kode:**
+> Typed collection khusus Buku, padanan Repository<T> di Java. Data disimpan dalam array asosiatif $items dengan kunci nomor induk, dan hanya menerima objek Buku (dijaga type hint pada simpan()). Mengimplementasikan IteratorAggregate agar bisa dipakai di foreach dan Countable agar bisa dihitung dengan count(). cariByIsbn() mengembalikan ?Buku lewat operator null-coalescing (??). Method fungsional: filter() memakai array_filter lalu array_values dan mengembalikan KoleksiBuku baru, map() memakai array_map, jumlahkan() memakai array_reduce, dan kelompokkan() mengelompokkan buku berdasarkan kunci hasil callable. Hasil filter dibungkus array_values agar indeks tidak berlubang.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-18.png)
+
+### 2.3. File: `KoleksiBukuTest.php`
+
+**Penjelasan Kode:**
+> Kelas uji PHPUnit untuk KoleksiBuku dengan setUp() yang membuat koleksi kosong sebelum tiap uji. Ada delapan kasus uji: item yang disimpan dapat ditemukan kembali, ISBN yang tidak ada mengembalikan null, koleksi baru berisi nol item, filter hanya mengembalikan yang lolos predikat, map mengembalikan daftar judul, jumlahkan menghitung total dengan benar, kunci yang sama menimpa buku lama, dan pinjam() dengan ISBN tidak terdaftar melempar BukuTidakDitemukanException (expectException). Dijalankan dengan ./vendor/bin/phpunit tests.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-19.png)
+
+### 2.4. File: `AnggotaTidakDitemukanException.php`
+
+**Penjelasan Kode:**
+> Exception yang dilempar saat ID anggota tidak terdaftar. Berupa final class turunan PerpustakaanException dan memakai constructor property promotion (private readonly string $idAnggota) untuk menyimpan ID, dilengkapi getter getIdAnggota().
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-20.png)
+
+### 2.5. File: `BatasPinjamTerlampauiException.php`
+
+**Penjelasan Kode:**
+> Exception yang dilempar saat anggota sudah mencapai batas peminjaman. Membawa $idAnggota dan $batas sebagai properti readonly, dengan pesan yang menyebut ID dan batas buku, serta getter getIdAnggota() dan getBatas().
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-21.png)
+
+### 2.6. File: `BukuSedangDipinjamException.php`
+
+**Penjelasan Kode:**
+> Exception yang dilempar saat tidak ada eksemplar tersisa. Membawa $isbn dan $judul sebagai properti readonly agar pesan jelas dan data bisa diambil kembali lewat getIsbn() dan getJudul().
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-22.png)
+
+### 2.7. File: `BukuTidakDitemukanException.php`
+
+**Penjelasan Kode:**
+> Exception yang dilempar saat ISBN tidak ada di katalog. Menyimpan $isbn lewat constructor property promotion sebagai properti readonly, dengan getter getIsbn(). Exception inilah yang diuji pada KoleksiBukuTest.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-22.png)
+
+### 2.8. File: `PerpustakaanException.php`
+
+**Penjelasan Kode:**
+> Kelas abstract untuk semua exception domain PHP, diturunkan dari RuntimeException. Menjadi satu titik tangkap bersama untuk kegagalan domain. Karena PHP tidak punya checked exception, dokumentasi @throws pada PHPDoc menjadi penting bagi pembaca kode.
+
+**Bukti Eksekusi (Screenshot):**
+- **After** ![alt text](image-23.png)
+
+### Output
+
+**Output Program:**
+
+![alt text](image-24.png)
+
+---
+
+## 3. Kesimpulan
+
+Pada pertemuan 11, struktur data manual diganti dengan Collections Framework dan generics. Di Java, Repository<T> menyimpan data dalam Map sehingga pencarian berdasarkan kunci lebih cepat daripada perulangan linear, mengembalikan Optional agar tidak ada pencarian yang mengembalikan null, serta menolak tipe yang salah pada saat kompilasi. Di PHP, KoleksiBuku berperan sebagai typed collection dengan tipe nullable (?Buku) dan operator ??. Operasi fungsional (filter, map, dan pengelompokan) menghasilkan tiga laporan yang sama di kedua bahasa, dengan catatan urutan argumen array_map dan array_filter di PHP berbeda. Unit test dengan JUnit 5 dan PHPUnit membuktikan perilaku kode secara otomatis, termasuk skenario exception dari sesi 10 yang kini benar-benar dijalankan, masing-masing dengan 8 kasus uji.
