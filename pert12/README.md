@@ -7,7 +7,7 @@
 | **Kelas** | A |
 | **Mata Kuliah** | Pemrograman Berbasis Objek (PBO) |
 | **Pertemuan** | 12 - Prinsip Solid dan Desaign Pattern Dasar |
-| **Tanggal** | Kamis 12 November 2026 |
+| **Tanggal** | Kamis 19 November 2026 |
 
 ---
 
